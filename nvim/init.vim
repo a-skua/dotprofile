@@ -19,16 +19,20 @@ set shiftwidth=4
 set foldmethod=syntax
 
 call plug#begin(stdpath('data') . '/plugged')
-Plug 'tpope/vim-vinegar'
-Plug 'easymotion/vim-easymotion'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'rust-lang/rust.vim'
-Plug 'sindresorhus/focus', {'rtp': 'vim'}
-Plug 'editorconfig/editorconfig-vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+" motions
+Plug 'tpope/vim-vinegar'
+Plug 'easymotion/vim-easymotion'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" color schemes
 Plug 'cocopon/iceberg.vim'
+Plug 'sindresorhus/focus', {'rtp': 'vim'}
 call plug#end()
 
 noremap <leader>p :CtrlP<cr>
