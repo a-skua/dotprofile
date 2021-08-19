@@ -9,7 +9,7 @@ set number
 set cursorline
 set cursorcolumn
 set list
-set listchars=tab:t_,trail:~,eol:$
+set listchars=tab:\|\ ,trail:~,eol:$
 set shellcmdflag=-ic
 " indent
 set autoindent
