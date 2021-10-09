@@ -21,6 +21,8 @@ set foldmethod=syntax
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'rust-lang/rust.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 " motions
