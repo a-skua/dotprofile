@@ -8,6 +8,7 @@ noremap ; :
 set number
 set cursorline
 set cursorcolumn
+set colorcolumn=80
 set list
 set listchars=tab:\|\ ,trail:~,eol:$
 set shellcmdflag=-ic
