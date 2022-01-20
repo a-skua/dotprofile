@@ -26,6 +26,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/webapi-vim'
 " motions
 Plug 'tpope/vim-vinegar'
 Plug 'easymotion/vim-easymotion'
@@ -41,6 +42,7 @@ call plug#end()
 noremap <leader>p :CtrlP<cr>
 noremap <leader>b :CtrlPBuffer<cr>
 noremap <leader>m :CtrlPMRU<cr>
+noremap <c-\> :LspDefinition<cr>
 
 colorscheme iceberg
 
