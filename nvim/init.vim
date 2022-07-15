@@ -37,6 +37,7 @@ Plug 'vim-airline/vim-airline-themes'
 " color schemes
 Plug 'cocopon/iceberg.vim'
 Plug 'sindresorhus/focus', {'rtp': 'vim'}
+Plug '4513ECHO/vim-colors-hatsunemiku'
 call plug#end()
 
 noremap <leader>p :CtrlP<cr>
@@ -44,7 +45,7 @@ noremap <leader>b :CtrlPBuffer<cr>
 noremap <leader>m :CtrlPMRU<cr>
 noremap <c-\> :LspDefinition<cr>
 
-colorscheme iceberg
+colorscheme hatsunemiku
 
 let g:dart_style_guide = 2
 let g:dart_format_on_save = 1
