@@ -1,0 +1,6 @@
+# dotprofile
+
+## initialize
+```sh
+make
+```
