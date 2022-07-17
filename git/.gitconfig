@@ -1,0 +1,7 @@
+# [user]
+# name = your name
+# email = your.name@example.com
+[core]
+editor = nvim
+[push]
+autoSetupRemote = true
