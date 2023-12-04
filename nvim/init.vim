@@ -40,6 +40,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'cocopon/iceberg.vim'
 Plug 'sindresorhus/focus', {'rtp': 'vim'}
 Plug '4513ECHO/vim-colors-hatsunemiku'
+Plug 'jparise/vim-graphql'
+Plug 'prisma/vim-prisma'
 call plug#end()
 
 noremap <leader>p :CtrlP<cr>
