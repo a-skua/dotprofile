@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+
+def usage
+  puts "wa - WebAssembly Component Runtime"
+  puts
+  puts "Usage: wa <command>[ <args>]"
+  puts "       wa run <image>"
+  puts
+  puts "Commands:"
+  puts "  run   - Run component"
+  puts "  pull  - Pull component from OCI registry"
+  puts "  clean - Clean up cached images"
+  puts "  help  - Show this help message"
+end
+
+@cache_dir = "#{ENV['HOME']}/.cache/wa"
+
+def get_image(image)
+  abort "No image specified" if image.nil?
+
+  image = image.match /^([a-zA-Z0-9_\-]+)\/([a-zA-Z0-9_\-]+)(?::([a-zA-Z0-9_\-]+))?$/ do ||
+    namespace = $1
+    package = $2
+    tag = $3 || 'latest'
+    {
+      name: "#{namespace}/#{package}:#{tag}",
+      dir: "#{@cache_dir}/#{namespace}/#{package}",
+      wasm: "#{@cache_dir}/#{namespace}/#{package}/#{tag}.wasm",
+      namespace: namespace,
+      package: package,
+      tag: tag,
+    }
+  end
+  abort "Invalid image format: <namespace>/<package>[:<tag>]" unless image
+
+  image
+end
+
+case ARGV.shift
+when 'run'
+  image = get_image ARGV.shift
+
+  unless File.exist? image[:wasm]
+    `mkdir -p #{image[:dir]}`
+    system "wkg oci pull -o #{image[:wasm]} #{image[:name]}"
+  else
+    system "echo Using cached image: #{image[:wasm]}"
+  end
+  exec "wasmtime run #{image[:wasm]} -- #{ARGV.join(' ')}"
+when 'clean'
+  system "rm -rf #{@cache_dir}"
+when 'pull'
+  image = get_image ARGV.shift
+  `mkdir -p #{image[:dir]}`
+  system "wkg oci pull -o #{image[:wasm]} #{image[:name]}"
+when 'help'
+  usage
+else
+  usage
+  exit 1
+end
