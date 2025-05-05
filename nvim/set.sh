@@ -6,11 +6,8 @@ if [ ! -d $DIR ]; then
   mkdir -p $DIR
 fi
 
-FILEPATH=$DIR/init.vim
-
-if [ ! -h $FILEPATH ]; then
-  ln -s $PWD/nvim/init.vim $FILEPATH
-fi
+ln -s $PWD/nvim/vimrc.vim $DIR/vimrc.vim
+ln -s $PWD/nvim/init.lua $DIR/init.lua
 
 echo "\
 ┌────────────────────────────────────────────────┐

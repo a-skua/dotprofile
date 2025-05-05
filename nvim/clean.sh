@@ -1,7 +1,7 @@
 #!/bin/sh
 
-FILEPATH=$HOME/.config/nvim/init.vim
+DIR=$HOME/.config/nvim
 
-if [ -h $FILEPATH ]; then
-  rm $FILEPATH
-fi
+rm $DIR/init.vim
+rm $DIR/vimrc.vim
+rm $DIR/init.lua

@@ -42,6 +42,8 @@ Plug 'sindresorhus/focus', {'rtp': 'vim'}
 Plug '4513ECHO/vim-colors-hatsunemiku'
 Plug 'jparise/vim-graphql'
 Plug 'prisma/vim-prisma'
+Plug 'qnighy/satysfi.vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 noremap <leader>p :CtrlP<cr>
@@ -52,6 +54,7 @@ noremap <c-\> :LspDefinition<cr>
 colorscheme hatsunemiku
 
 let g:dart_style_guide = 2
-let g:dart_format_on_save = 1
+let g:dart_format_on_save = 0
 let g:rustfmt_autosave = 1
 let g:airline_theme = 'papercolor'
+
