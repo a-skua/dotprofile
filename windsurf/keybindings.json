@@ -1,0 +1,18 @@
+[
+  {
+    "key": "ctrl+l",
+    "command": "windsurf.prioritized.cascadeFocusNextGroup"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "windsurf.prioritized.cascadeFocusNextPane"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "windsurf.prioritized.cascadeFocusPrevGroup"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "windsurf.prioritized.cascadeFocusPrevPane"
+  }
+]

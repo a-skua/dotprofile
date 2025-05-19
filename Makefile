@@ -26,6 +26,13 @@ set-nvim:
 clean-nvim:
 	$(CURDIR)/nvim/clean.sh
 
+WINDSURF_KEYBIND_SRC := $(HOME)/dev/dotprofile/windsurf/keybindings.json
+WINDSURF_KEYBIND_DST := $(HOME)/.codeium/windsurf/keybindings.json
+
+.PHONY: set-windsurf-keybindings
+set-windsurf-keybindings:
+	ln -sf $(WINDSURF_KEYBIND_SRC) $(WINDSURF_KEYBIND_DST)
+
 
 $(NVIM_PLUGINS_DIR):
 	mkdir -p $@
