@@ -33,7 +33,6 @@ Plug 'mattn/webapi-vim'
 Plug 'tpope/vim-vinegar'
 Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " color schemes
