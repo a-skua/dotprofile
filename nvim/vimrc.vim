@@ -55,6 +55,6 @@ colorscheme hatsunemiku
 
 let g:dart_style_guide = 2
 let g:dart_format_on_save = 0
-let g:rustfmt_autosave = 1
+let g:rustfmt_autosave = 0
 let g:airline_theme = 'papercolor'
 
