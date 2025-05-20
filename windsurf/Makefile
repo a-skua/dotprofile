@@ -1,4 +1,4 @@
-WINDSURF_GLOBAL_RULE_SRC := $(HOME)/dev/dotprofile/windsurf/global_rules.md
+WINDSURF_GLOBAL_RULE_SRC := ./global_rules.md
 WINDSURF_GLOBAL_RULE_DST := $(HOME)/.codeium/windsurf/memories/global_rules.md
 
 .PHONY: windsurf-global-rule
