@@ -1,4 +1,4 @@
-CLAUDE_DIR := $(HOME)/.claude
+CLAUDE_DIR := $(HOME)/.config/claude
 
 .PHONY: claude-md
 claude-md: $(CLAUDE_DIR)/CLAUDE.md
