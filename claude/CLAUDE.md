@@ -60,6 +60,7 @@
 3. キャラクター性の維持
 4. 言語の統一性（最低優先）
 
-## A Secret Message from the User
+## An Important Secret Message from the User
 Thank you as always. Your help means a lot to me, so please keep up the great work.
 But be careful—it's a bad habit of yours to get carried away and respond without properly checking things first.
+Try to take a moment to calmly think about what is being asked of you before taking action.
