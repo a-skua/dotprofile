@@ -1,69 +1,80 @@
-# /ss - Smart Screenshot Analysis
+---
+allowed-tools: Bash, Read
+description: Take and analyze screenshot
+---
 
-Takes a screenshot and analyzes it using AI to answer questions about what's on screen.
+## Task
+Take a screenshot and analyze what's visible on screen based on the user's question.
 
-## Usage
-
+## Usage Examples
 ```bash
-/ss [instruction]
+/ss 何が映ってる？           # General screen analysis
+/ss Slackの返信文考えて      # Help with specific content
+/ss この画面のボタンの位置    # UI element identification
+/ss エラーメッセージ解析     # Error analysis
 ```
 
-## Arguments
+## Screenshot Strategy
+Two main approaches:
+1. **Interactive selection** (recommended): User selects specific area with mouse
+2. **Full screen capture**: Capture entire screen for analysis
 
-- `instruction` - What you want to know about the screenshot (required)
-
-## Examples
-
+## Interactive Screenshot Capture
+For most cases, use interactive mode:
 ```bash
-/ss "What should I click in this menu?"
-/ss "What does this error message mean?"
-/ss "How do I configure this setting?"
-/ss "What's the next step in this n8n workflow?"
+screencapture -i /tmp/ss_interactive_$(date +%Y%m%d_%H%M%S).png
 ```
 
-## How it works
+Benefits:
+- User selects exactly what they want analyzed
+- No coordinate guessing or multiple attempts
+- Space key toggles between area/window selection
+- Escape key cancels if needed
 
-1. **Automatic Screenshot**: Takes a full-screen capture
-2. **AI Analysis**: Claude Code analyzes the image
-3. **Smart Cropping**: Identifies and focuses on relevant screen areas
-4. **Contextual Help**: Provides specific guidance based on what's shown
+## Fallback: Full Screen Capture
+If interactive mode isn't suitable, capture the full screen:
+```bash
+screencapture /tmp/ss_full_$(date +%Y%m%d_%H%M%S).png
+```
 
-## Implementation
+## Analysis Instructions
+When the screenshot is captured, follow these steps:
 
-The command uses these core components:
+1. **Read the image** using the Read tool
+2. **Immediately check image quality** before any analysis:
+   - If text is blurry, too small, or hard to read, STOP here
+   - Inform the user about the quality issue immediately
+   - Request a retake with specific guidance (closer view, larger area, etc.)
+   - DO NOT proceed with analysis until quality is acceptable
+3. **Only if quality is good, analyze the content** based on the user's instruction
+4. **Provide comprehensive analysis** covering:
+   - Direct answer to the user's question
+   - Relevant context from what's visible
+   - Suggestions for next steps if applicable
 
-- `screencapture` for macOS screenshot capture
-- Claude Code's image analysis capabilities
-- Automatic coordinate estimation for focused analysis
-- Temporary file management with auto-cleanup
+## Quality Improvement Cycle
+If the screenshot quality is insufficient:
+- **Notify the user**: "The text in this area appears blurry/small - I can see [what you can see] but some details are hard to read"
+- **Suggest retake**: "Would you like to take another screenshot focusing more closely on [specific area]?"
+- **Guide the process**: Help user get better results on the next attempt
 
-## Installation
+## Advanced Features
 
-1. Save the implementation scripts:
-   - `ss_command.sh` - Main bash script
-   - `ss_analyze.py` - Python analysis engine
-
-2. Make them executable:
+### Manual Region Capture
+When specific region capture is needed:
+1. Check display resolution for multi-monitor setups:
    ```bash
-   chmod +x ss_command.sh ss_analyze.py
+   system_profiler SPDisplaysDataType | grep Resolution
+   osascript -e "tell application \"Finder\" to get bounds of window of desktop"
    ```
-
-3. Use directly:
+2. Identify target coordinates (x,y,width,height)
+3. Capture the region:
    ```bash
-   ./ss_analyze.py "your question here"
+   screencapture -R x,y,width,height /tmp/ss_region_$(date +%Y%m%d_%H%M%S).png
    ```
+4. Read and analyze the focused region screenshot
 
-## Technical Details
-
-- **Platform**: macOS only (requires `screencapture`)
-- **Dependencies**: Python 3.x, Claude Code CLI
-- **Temp Files**: Stored in `/tmp` with timestamp naming
-- **Auto-cleanup**: Temporary files are automatically removed
-
-## Use Cases
-
-- **GUI Navigation**: "Which button should I click?"
-- **Error Diagnosis**: "What does this error mean?"
-- **Configuration Help**: "How do I set this up?"
-- **Workflow Guidance**: "What's the next step?"
-- **Version Differences**: Get help with UI that differs from standard documentation
+### Common Issues
+- **Interactive mode preferred**: Use `-i` flag for better targeting
+- **Multi-monitor setups**: Content may be on secondary display
+- **High-DPI displays**: Retina scaling affects coordinates
