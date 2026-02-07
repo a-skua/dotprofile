@@ -1,18 +1,17 @@
-# nvim関連のMakefile
-
 NVIM_PLUGINS_DIR := $(HOME)/.config/nvim/pack/plugins/start
 NVIM_GITHUB_DIR  := $(HOME)/.config/nvim/pack/github/start
 
-.PHONY: nvim-plugins
-nvim-plugins: \
+.PHONY: init plugins clean
+
+init: plugins
+	$(CURDIR)/set.sh
+
+plugins: \
 	$(NVIM_PLUGINS_DIR)/ctrlp \
 	$(NVIM_PLUGINS_DIR)/plug.vim \
 	$(NVIM_GITHUB_DIR)/copilot.vim
 
-set-nvim:
-	$(CURDIR)/set.sh
-
-clean-nvim:
+clean:
 	$(CURDIR)/clean.sh
 
 $(NVIM_PLUGINS_DIR):

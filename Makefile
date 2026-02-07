@@ -1,25 +1,31 @@
-.PHONY: set-nvim clean-nvim nvim-plugins
-nvim-plugins:
-	$(MAKE) -C nvim nvim-plugins
+.PHONY: init init-nvim init-git init-claude clean clean-nvim clean-git clean-claude
 
-set-nvim:
-	$(MAKE) -C nvim set-nvim
+init: init-nvim init-git init-claude
+
+init-nvim:
+	$(MAKE) -C nvim
+
+init-git:
+	$(MAKE) -C git
+
+init-claude:
+	$(MAKE) -C claude
+
+clean: clean-nvim clean-git clean-claude
 
 clean-nvim:
-	$(MAKE) -C nvim clean-nvim
+	$(MAKE) -C nvim clean
 
-set: set-nvim set-git
+clean-git:
+	$(MAKE) -C git clean
 
-clean: clean-nvim
+clean-claude:
+	$(MAKE) -C claude clean
 
-# git
-set-git:
-	$(CURDIR)/git/set.sh
-
-# wsl
-set-wsl:
+# wsl (not included in default init)
+.PHONY: init-wsl clean-wsl
+init-wsl:
 	$(CURDIR)/wsl/set.sh
 
 clean-wsl:
 	$(CURDIR)/wsl/clean.sh
-
