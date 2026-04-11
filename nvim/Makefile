@@ -9,7 +9,8 @@ init: plugins
 plugins: \
 	$(NVIM_PLUGINS_DIR)/ctrlp \
 	$(NVIM_PLUGINS_DIR)/plug.vim \
-	$(NVIM_GITHUB_DIR)/copilot.vim
+	$(NVIM_GITHUB_DIR)/copilot.vim \
+	$(NVIM_GITHUB_DIR)/lean.nvim
 
 clean:
 	$(CURDIR)/clean.sh
@@ -28,3 +29,6 @@ $(NVIM_PLUGINS_DIR)/plug.vim: $(NVIM_PLUGINS_DIR)
 
 $(NVIM_GITHUB_DIR)/copilot.vim: $(NVIM_GITHUB_DIR)
 	git clone --depth=1 https://github.com/github/copilot.vim.git $@
+
+$(NVIM_GITHUB_DIR)/lean.nvim: $(NVIM_GITHUB_DIR)
+	git clone --depth=1 https://github.com/Julian/lean.nvim.git $@
