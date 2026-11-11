@@ -1,9 +1,10 @@
-# [user]
-# name = your name
-# email = your.name@example.com
+#[user]
+#	name = your name
+#	email = your.name@example.com
 [core]
-editor = nvim
+	editor = nvim
+	quotepath = false
 [push]
-autoSetupRemote = true
+	autoSetupRemote = true
 [pull]
-rebase = true
+	rebase = true
